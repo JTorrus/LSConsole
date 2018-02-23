@@ -13,6 +13,6 @@ function copia_fitxer($fitxer, $rutadesti){}
 
 function crea_modifica_fitxer($fitxer, $contingut){}
 
-function sha1($fitxer){}
+//function sha1($fitxer){}
 
-function md5($fitxer){}
+//function md5($fitxer){}

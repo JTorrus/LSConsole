@@ -1,5 +1,3 @@
-<?php ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,17 +12,22 @@
 </head>
 <body>
 <form action="executa.php" method="post">
-    <main class="container">
+    <main class="container-fluid">
         <section>
-            <h2>LSConsole - Simulació de terminal amb Php i Bootstrap</h2>
+            <h3>LSConsole - Simulació de terminal amb Php i Bootstrap</h3>
             <p>
                 <span> Pressiona 'help' + <kbd>Enter</kbd> per veure les comandes disponibles</span>
             </p>
         </section>
 
-        <span class="command" class="col-md-4">
-            dani&javi:/$ <input class="col-md-8" type="text" autofocus>
-        </span>
+        <div class="row">
+            <span class="command" class="col-xs-2 col-sm-2 col-md-4">
+            dani&javi:/$
+            </span>
+
+            <input class="col-xs-10 col-xs-10 col-md-8" type="text" name="input_cmd" autofocus spellcheck="false"
+                   autocomplete="off">
+        </div>
     </main>
 </form>
 
