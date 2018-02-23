@@ -22,8 +22,8 @@
             </p>
         </section>
 
-        <span class="command">
-            dani&javi:/$ <input type="text">
+        <span class="command" class="col-md-4">
+            dani&javi:/$ <input class="col-md-8" type="text" autofocus>
         </span>
     </main>
 </form>

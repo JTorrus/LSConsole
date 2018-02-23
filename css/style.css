@@ -9,7 +9,7 @@ body {
     font: .875em/1.6 'Inconsolata', monospace;
     color: #181818;
     font-weight: 400;
-    max-width: 28em;
+    width:100%;
     padding: 1em;
     margin: 5% 0;
 }
@@ -67,7 +67,6 @@ kbd {
 }
 
 input[type="text"] {
-    max-width: 10em;
     border: none;
     font-family: inherit;
     background: #fff;
@@ -82,7 +81,6 @@ input[type="text"]:focus {
 
 .command {
     display: block;
-    max-width: 20em;
     color: #181818;
     font-weight: 700;
     margin: 2em 0;
