@@ -1,6 +1,5 @@
 <?php
 
-
 function find_fitxer($fitxer, $dir){}
 
 function stats_fitxer($fitxer){}
