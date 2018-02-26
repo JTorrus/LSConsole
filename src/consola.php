@@ -21,15 +21,40 @@
         </section>
 
         <div class="row">
-            <span class="command" class="col-xs-2 col-sm-2 col-md-4">
-            dani&javi:/$
-            </span>
+            <span class="command" class="col-xs-2 col-sm-2 col-md-4">dani&javi:/$</span>
 
             <input class="col-xs-10 col-xs-10 col-md-8" type="text" name="input_cmd" autofocus spellcheck="false"
                    autocomplete="off">
         </div>
     </main>
 </form>
+
+<main class="container-fluid">
+    <section>
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+                session_start();
+                $output = Array();
+
+                if (!empty($_SESSION['output'])) {
+                    $output = $_SESSION['output'];
+                    if (is_array($_SESSION['output'])) {
+                        foreach ($output as $singleItem) {
+                            echo $singleItem . "<br>";
+                        }
+                    } else {
+                        echo $output;
+                    }
+
+                    session_destroy();
+                }
+                ?>
+            </div>
+        </div>
+    </section>
+</main>
+
 
 <script
         src="http://code.jquery.com/jquery-3.3.1.min.js"
