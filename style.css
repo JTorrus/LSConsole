@@ -85,9 +85,10 @@ input[type="text"]:focus {
     margin: 2em 0;
 }
 
-/*section{
-    display: none;
-}*/
 .open {
     display: block;
+}
+
+.cmdbody {
+    height: 500px;
 }

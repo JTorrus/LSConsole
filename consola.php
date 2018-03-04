@@ -8,7 +8,7 @@
     <title>LSConsole</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <form action="executa.php" method="post">
@@ -29,10 +29,12 @@
     </main>
 </form>
 
+<hr>
+
 <main class="container-fluid">
     <section>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 cmdbody">
                 <?php
                 session_start();
                 $output = Array();
@@ -44,7 +46,7 @@
                             echo $singleItem . "<br>";
                         }
                     } else {
-                        echo $output;
+                        echo $output . "<br>";
                     }
 
                     session_destroy();

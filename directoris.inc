@@ -4,12 +4,12 @@ function crea_directori($dir){
     if ($dir != null){
         if (!file_exists($dir)){
             mkdir($dir);
-            echo "Directori creat amb exit";
+            return 1;
         }else{
-            echo "El directori existeix";
+            return 0;
         }
     }else {
-        echo "Has d' insertar el nom del directori";
+        return -1;
     }
 }
 
@@ -17,23 +17,29 @@ function esborra_directori($dir){
     if ($dir != null){
         if (file_exists($dir)){
             rmdir($dir);
-            echo "Directori esborrat amb exit";
+            return 1;
         }else{
-            echo "El directori no existeix";
+            return 0;
         }
     }else {
-        echo "Has d' insertar el nom del directori";
+        return -1;
     }
 }
 
 function mou_directori($dir, $rutadesti){
     if ($dir != null && $rutadesti != null){
-        rename($dir, "$rutadesti/$dir");
+        rename($dir, $rutadesti.DIRECTORY_SEPARATOR.$dir);
+        return true;
+    } else {
+        return false;
     }
 }
 
 function copia_directori($dir, $rutadesti){
     if ($dir != null && $rutadesti != null){
-        copy($dir, $rutadesti/$dir);
+        copy($dir, $rutadesti.DIRECTORY_SEPARATOR.$dir);
+        return true;
+    } else {
+        return false;
     }
 }

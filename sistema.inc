@@ -7,7 +7,7 @@ function llistat($dir){
             echo "<br>";
         }
     }else{
-        echo "El nom introduit no pertany a directori";
+        echo "El nom introduit no pertany a cap directori";
     }
 }
 
