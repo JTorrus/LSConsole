@@ -34,7 +34,7 @@
 <main class="container-fluid">
     <section>
         <div class="row">
-            <div class="col-md-12 cmdbody">
+            <div class="col-md-12">
                 <?php
                 session_start();
                 $output = Array();

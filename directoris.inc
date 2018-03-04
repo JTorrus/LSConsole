@@ -34,7 +34,7 @@ function esborra_directori($dir)
                         return "La carpeta $dir s'ha esborrat correctament";
                     }
                 } else {
-                    return "$dir no és un directori, utilitza la comanda rm -f per això";
+                    return "$dir és un fitxer, utilitza la comanda rm -f per esborrar-ho";
                 }
             } else {
                 foreach ($files as $current) {
