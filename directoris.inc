@@ -1,5 +1,7 @@
 <?php
 
+include_once 'sistema.inc';
+
 function crea_directori($dir)
 {
     $currentDir = HOME . DIRECTORY_SEPARATOR . $dir;
@@ -61,20 +63,45 @@ function esborra_directori($dir)
 
 function mou_directori($dir, $rutadesti)
 {
+    $currentDir = HOME . DIRECTORY_SEPARATOR . $dir;
+    $destiny = HOME . DIRECTORY_SEPARATOR . $rutadesti;
+
     if ($dir != null && $rutadesti != null) {
-        rename($dir, $rutadesti . DIRECTORY_SEPARATOR . $dir);
-        return true;
+        if (file_exists($currentDir)) {
+            if (rename($currentDir, $destiny)) {
+                return "S'ha mogut la carpeta $dir a $rutadesti correctament";
+            } else {
+                return "Hi ha hagut un problema movent la carpeta $dir a $rutadesti";
+            }
+        } else {
+            return "La carpeta $dir no existeix";
+        }
     } else {
-        return false;
+        return "Especifica els paràmetres per a les carpetes";
     }
 }
 
 function copia_directori($dir, $rutadesti)
 {
+    $currentDir = HOME . DIRECTORY_SEPARATOR . $dir;
+    $destiny = HOME . DIRECTORY_SEPARATOR . $rutadesti;
+
     if ($dir != null && $rutadesti != null) {
-        copy($dir, $rutadesti . DIRECTORY_SEPARATOR . $dir);
-        return true;
+        if (is_dir($currentDir)) {
+            $files = scandir($currentDir);
+            $filesToCopy = Array();
+
+            foreach ($files as $item) {
+                if ($item != "." && $item != "..") {
+                    array_push($filesToCopy, copia_fitxer($currentDir . DIRECTORY_SEPARATOR . $item, $destiny . DIRECTORY_SEPARATOR . $item));
+                }
+            }
+
+            return $filesToCopy;
+        } else {
+            return "$dir no és un directori";
+        }
     } else {
-        return false;
+        return "Especifica els paràmetres per a les carpetes";
     }
 }

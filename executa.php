@@ -38,14 +38,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['input_cmd'])) {
             $_SESSION['output'] = $removed;
             break;
         case 'mv':
-            mou_directori($arrInput[1], $arrInput[2]);
+            if ($arrInput[1] == '-d') {
+                $moved = mou_directori($arrInput[2], $arrInput[3]);
+            } else if ($arrInput[1] == '-f') {
+                //TODO
+            } else {
+                $moved = "Utilitza paràmetres vàlids";
+            }
+
+            $_SESSION['output'] = $moved;
             break;
         case 'cp':
-            if (is_dir($arrInput[1]) && is_dir($arrInput[2])) {
-                copia_directori($arrInput[1], $arrInput[2]);
-            } elseif (is_file($arrInput[1]) && is_dir($arrInput[2])) {
-                copia_fitxer($arrInput[1], $arrInput[2]);
+            if ($arrInput[1] == '-d') {
+                $copied = copia_directori($arrInput[2], $arrInput[3]);
+            } else if ($arrInput[1] == '-f') {
+                //TODO
+            } else {
+                $copied = "Utilitza paràmetres vàlids";
             }
+
+            $_SESSION['output'] = $copied;
             break;
         case 'find':
             break;
