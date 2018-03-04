@@ -1,5 +1,6 @@
 <?php
 
+include 'constants.inc';
 include 'sistema.inc';
 include 'directoris.inc';
 include 'arxius.inc';
@@ -21,13 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['input_cmd'])) {
             );
 
             $_SESSION['output'] = $commands;
-            header('Location: consola.php');
             break;
         case 'mkdir':
-            crea_directori($arrInput[1]);
+            $_SESSION['output'] = crea_directori($arrInput[1]);
             break;
         case 'rm':
-            esborra_directori($arrInput[1]);
+            if ($arrInput[1] == '-d') {
+                $removed = esborra_directori($arrInput[2]);
+            } else if ($arrInput[1] == '-f') {
+                //TODO
+            } else {
+                $removed = "Utilitza paràmetres vàlids";
+            }
+
+            $_SESSION['output'] = $removed;
             break;
         case 'mv':
             mou_directori($arrInput[1], $arrInput[2]);
@@ -58,4 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['input_cmd'])) {
         case 'free':
             break;
     }
+
+    header('Location: consola.php');
 }

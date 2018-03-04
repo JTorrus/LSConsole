@@ -21,7 +21,7 @@
         </section>
 
         <div class="row">
-            <span class="command" class="col-xs-2 col-sm-2 col-md-4">dani&javi:/$</span>
+            <span class="command" class="col-xs-2 col-sm-2 col-md-4"><?php echo getcwd()?></span>
 
             <input class="col-xs-10 col-xs-10 col-md-8" type="text" name="input_cmd" autofocus spellcheck="false"
                    autocomplete="off">

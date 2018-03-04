@@ -1,2 +1,2 @@
 <?php
-define("HOME", realpath('home'));
+define("HOME", realpath('main'));
