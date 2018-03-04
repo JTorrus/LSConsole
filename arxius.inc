@@ -5,7 +5,7 @@ function find_fitxer($fitxer, $dir)
     $currentDir = HOME . DIRECTORY_SEPARATOR . $dir;
     $files = scandir($currentDir);
 
-    if ($fitxer != null && $dir != null) {
+    if ($fitxer != null) {
         foreach ($files as $fileToFind) {
             if (is_file($currentDir . DIRECTORY_SEPARATOR . $fileToFind)) {
                 if (strtolower($fitxer) == strtolower($fileToFind)) {
@@ -16,7 +16,7 @@ function find_fitxer($fitxer, $dir)
 
         return "$fitxer no s'ha trobat";
     } else {
-        return "Especifica els paràmetres per al fitxer i el directori";
+        return "Especifica els paràmetres per al fitxer";
     }
 }
 
@@ -29,11 +29,11 @@ function stats_fitxer($fitxer)
             $fileStats = Array();
             $statsReturned = stat($currentFile);
 
-            $userId = "ID de l'usuari propietari -> " . gmdate("d-m-Y H:i:s", $statsReturned['uid']);
-            $groupId = "ID del grup propietari -> " . gmdate("d-m-Y H:i:s", $statsReturned['gid']);
+            $userId = "ID de l'usuari propietari -> " . $statsReturned['uid'];
+            $groupId = "ID del grup propietari -> " . $statsReturned['gid'];
             $accessDate = "Darrer accès -> " . gmdate("d-m-Y H:i:s", $statsReturned['atime']);
             $modifiedDate = "Darrera modificació -> " . gmdate("d-m-Y H:i:s", $statsReturned['mtime']);
-            $sizeBytes = "Mida en bytes -> " . gmdate("d-m-Y H:i:s", $statsReturned['size']);
+            $sizeBytes = "Mida en bytes -> " . $statsReturned['size'];
 
             array_push($fileStats, $userId, $groupId, $accessDate, $modifiedDate, $sizeBytes);
 
@@ -78,7 +78,7 @@ function mou_fitxer($fitxer, $rutadesti)
 
     if ($fitxer != null && $rutadesti != null) {
         if (file_exists($currentFile)) {
-            if (rename($currentFile, $destiny)) {
+            if (rename($currentFile, $destiny . DIRECTORY_SEPARATOR . $fitxer)) {
                 return "El fitxer $fitxer s'ha mogut correctament a $rutadesti";
             } else {
                 return "Hi ha hagut un problema movent $fitxer a $rutadesti";
@@ -99,7 +99,7 @@ function copia_fitxer($fitxer, $rutadesti)
     if ($fitxer != null && $rutadesti != null) {
         if (file_exists($currentFile)) {
             if (is_dir($destiny)) {
-                if (copy($fitxer, $rutadesti . DIRECTORY_SEPARATOR . $fitxer)) {
+                if (copy($currentFile, $destiny . DIRECTORY_SEPARATOR . $fitxer)) {
                     return "L'arxiu $fitxer s'ha copiat correctament a $rutadesti";
                 } else {
                     return "Hi ha hagut un error copiant $fitxer a $rutadesti";
@@ -119,7 +119,7 @@ function crea_modifica_fitxer($fitxer, $contingut)
 {
     $currentFile = HOME . DIRECTORY_SEPARATOR . $fitxer;
 
-    if ($fitxer != null && $contingut != null) {
+    if ($fitxer != null) {
         if (!file_exists($currentFile) && empty($contingut)) {
             if (touch($currentFile)) {
                 return "El fitxer $fitxer s'ha creat correctament";
@@ -144,7 +144,7 @@ function crea_modifica_fitxer($fitxer, $contingut)
             return "El fitxer $fitxer no existeix";
         }
     } else {
-        return "Especifica els paràmetres per al fitxer i el directori";
+        return "Especifica els paràmetres per al fitxer";
     }
 }
 
@@ -155,7 +155,7 @@ function our_sha1($fitxer)
     if ($fitxer != null) {
         if (file_exists($currentFile)) {
             if (is_file($currentFile)) {
-                return sha1_file($currentFile);
+                return "SHA1 de $fitxer -> " . sha1_file($currentFile);
             } else {
                 return "$fitxer no és un fitxer";
             }
@@ -175,7 +175,7 @@ function our_md5($fitxer)
     if ($fitxer != null) {
         if (file_exists($currentFile)) {
             if (is_file($currentFile)) {
-                return md5_file($currentFile);
+                return "MD5 de $fitxer -> " . md5_file($currentFile);
             } else {
                 return "$fitxer no és un fitxer";
             }

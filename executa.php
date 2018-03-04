@@ -63,12 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['input_cmd'])) {
             $_SESSION['output'] = our_md5($arrInput[1]);
             break;
         case 'ls':
-            llistat($arrInput[1]);
+            $_SESSION['output'] = llistat($arrInput[1]);
             break;
         case 'pwd':
-            ruta();
+            $_SESSION['output'] = ruta();
             break;
         case 'free':
+            $_SESSION['output'] = stats_sistema();
             break;
         case 'clear':
             $_SESSION['output'] = "";

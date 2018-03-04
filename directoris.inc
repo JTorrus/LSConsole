@@ -30,11 +30,7 @@ function esborra_directori($dir)
             $files = scandir($currentDir);
             if (empty($files)) {
                 if (is_dir($currentDir)) {
-                    if (rmdir($currentDir)) {
-                        return "La carpeta $dir s'ha esborrat correctament";
-                    }
-                } else {
-                    return "$dir és un fitxer, utilitza la comanda rm -f per esborrar-ho";
+                    rmdir($currentDir);
                 }
             } else {
                 foreach ($files as $current) {
@@ -68,7 +64,7 @@ function mou_directori($dir, $rutadesti)
 
     if ($dir != null && $rutadesti != null) {
         if (file_exists($currentDir)) {
-            if (rename($currentDir, $destiny)) {
+            if (rename($currentDir, $destiny . DIRECTORY_SEPARATOR . $dir)) {
                 return "S'ha mogut la carpeta $dir a $rutadesti correctament";
             } else {
                 return "Hi ha hagut un problema movent la carpeta $dir a $rutadesti";
@@ -84,7 +80,6 @@ function mou_directori($dir, $rutadesti)
 function copia_directori($dir, $rutadesti)
 {
     $currentDir = HOME . DIRECTORY_SEPARATOR . $dir;
-    $destiny = HOME . DIRECTORY_SEPARATOR . $rutadesti;
 
     if ($dir != null && $rutadesti != null) {
         if (is_dir($currentDir)) {
@@ -93,7 +88,7 @@ function copia_directori($dir, $rutadesti)
 
             foreach ($files as $item) {
                 if ($item != "." && $item != "..") {
-                    array_push($filesToCopy, copia_fitxer($currentDir . DIRECTORY_SEPARATOR . $item, $destiny . DIRECTORY_SEPARATOR . $item));
+                    array_push($filesToCopy, copia_fitxer($dir.DIRECTORY_SEPARATOR.$item, $rutadesti));
                 }
             }
 
